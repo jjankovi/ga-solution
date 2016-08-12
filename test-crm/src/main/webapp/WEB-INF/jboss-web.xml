@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>crm</context-root>
+</jboss-web>

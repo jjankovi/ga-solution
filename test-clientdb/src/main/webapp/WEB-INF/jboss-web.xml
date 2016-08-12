@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>clientdb</context-root>
+</jboss-web>
