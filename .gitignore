@@ -1,2 +1,10 @@
+/test-clientdb/test-clientdb.iml
+/test-crm/test-crm.iml
+/ga-module/ga-web/ga-web.iml
+/ga-module/ga-services/ga-services.iml
+/ga-module/ga-crm-connector/ga-crm-connector.iml
+/ga-module/ga-common/ga-common.iml
+/ga-module/ga-clientdb-connector/ga-clientdb-connector.iml
+/ga-module/ga-module.iml
+/ga-solution.iml
 .idea
-go-solution.iml

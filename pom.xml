@@ -4,13 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>sk.softec.go</groupId>
-    <artifactId>go-solution</artifactId>
+    <groupId>sk.softec.ga</groupId>
+    <artifactId>ga-solution</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>test-crm</module>
         <module>test-clientdb</module>
+        <module>ga-module</module>
     </modules>
     <properties>
         <jackson.version>2.5.4</jackson.version>

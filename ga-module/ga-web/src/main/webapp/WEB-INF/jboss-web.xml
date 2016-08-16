@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>gamodule</context-root>
+</jboss-web>

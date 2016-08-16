@@ -12,7 +12,7 @@
 
 		<property name="packagesToScan">
 			<array>
-				<value>sk.softec.go.clientdb.model</value>
+				<value>sk.softec.ga.clientdb.model</value>
 			</array>
 		</property>
 

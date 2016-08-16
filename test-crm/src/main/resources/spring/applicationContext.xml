@@ -12,6 +12,6 @@
 
     <context:annotation-config/>
 
-	<context:component-scan base-package="sk.softec.go"/>
+	<context:component-scan base-package="sk.softec.ga"/>
 
 </beans>
