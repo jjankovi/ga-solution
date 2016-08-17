@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.CRMConnector;
 import sk.softec.ga.module.connector.model.ClientData;
-import sk.softec.ga.module.connector.model.ClientEvent;
+import sk.softec.ga.module.connector.model.CRMEvent;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -35,7 +35,7 @@ public class TaBaCRMConnector implements CRMConnector {
     }
 
     @Override
-    public List<ClientEvent> getClientEvents(Date fromDate) {
+    public List<CRMEvent> getClientEvents(Date fromDate) {
         String response = fetchClientEvents(fromDate);
         return parseClientEventResponse(response);
     }
@@ -81,19 +81,19 @@ public class TaBaCRMConnector implements CRMConnector {
         return clientData;
     }
 
-    private List<ClientEvent> parseClientEventResponse(String response) {
-        List<ClientEvent> clientEvents = new ArrayList<ClientEvent>();
+    private List<CRMEvent> parseClientEventResponse(String response) {
+        List<CRMEvent> CRMEvents = new ArrayList<CRMEvent>();
 
         JSONArray parsedResponse = new JSONArray(response);
 
         for (Object object : parsedResponse) {
             JSONObject entry = (JSONObject) object;
-            ClientEvent clientEvent = new ClientEvent();
-            clientEvent.setId(entry.getLong("id"));
+            CRMEvent CRMEvent = new CRMEvent();
+            CRMEvent.setId(entry.getLong("id"));
             // TODO este clientId
-            clientEvent.setEventType(entry.getString("eventType"));
-            clientEvents.add(clientEvent);
+            CRMEvent.setEventType(entry.getString("eventType"));
+            CRMEvents.add(CRMEvent);
         }
-        return clientEvents;
+        return CRMEvents;
     }
 }

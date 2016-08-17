@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by jankovj on 15. 8. 2016.
  */
-public class ClientEvent {
+public class CRMEvent {
 
     private Long id;
 

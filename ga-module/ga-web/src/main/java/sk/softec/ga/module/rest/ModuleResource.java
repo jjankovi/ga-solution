@@ -3,12 +3,10 @@ package sk.softec.ga.module.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sk.softec.ga.module.connector.model.CidData;
+import sk.softec.ga.module.connector.model.GAEvent;
 import sk.softec.ga.module.services.ModuleService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 /**
@@ -29,11 +27,20 @@ public class ModuleResource extends SpringBeanAutowiringSupport {
     }
 
     @GET
-    @Path("/ciddata/{input}")
+    @Path("/cid-data/{input}")
     @Produces("application/json")
     public Response generateFullCID(@PathParam("input") String input ) {
         CidData cidData = moduleService.generateCIDData(input);
         return Response.ok().entity(cidData).build();
+    }
+
+    @POST
+    @Path("ga-event")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response sendGaEvent(GAEvent gaEvent) {
+        moduleService.sendGAEvent(gaEvent);
+        return Response.ok().build();
     }
 
 }

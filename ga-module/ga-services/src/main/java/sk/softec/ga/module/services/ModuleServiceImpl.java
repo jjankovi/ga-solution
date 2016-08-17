@@ -2,14 +2,11 @@ package sk.softec.ga.module.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sk.softec.ga.module.connector.model.CidData;
-import sk.softec.ga.module.connector.model.ClientData;
-import sk.softec.ga.module.connector.model.ClientEvent;
-import sk.softec.ga.module.connector.model.ClientIdentity;
+import sk.softec.ga.module.connector.model.*;
 import sk.softec.ga.module.services.cid.CIDGenerator;
 import sk.softec.ga.module.services.client.ClientDataProvider;
-import sk.softec.ga.module.services.client.ClientEventReader;
-import sk.softec.ga.module.services.event.EventLogger;
+import sk.softec.ga.module.services.crm.CRMEventReader;
+import sk.softec.ga.module.services.event.GAEventLogger;
 
 import java.util.Date;
 import java.util.List;
@@ -27,10 +24,10 @@ public class ModuleServiceImpl implements ModuleService {
     ClientDataProvider clientDataProvider;
 
     @Autowired
-    ClientEventReader clientEventReader;
+    CRMEventReader crmEventReader;
 
     @Autowired
-    EventLogger eventLogger;
+    GAEventLogger gaEventLogger;
 
     @Override
     public String generateCID(String input) {
@@ -50,13 +47,21 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     @Override
-    public void checkNewClientEvents() {
+    public void checkCRMEvents() {
         // TODO obtain last checked events time
         Date fromDate = null;
-        List<ClientEvent> clientEvents = clientEventReader.getClientEvents(fromDate);
-        for (ClientEvent clientEvent : clientEvents) {
-            ClientData clientData = clientDataProvider.getClientData(clientEvent.getClientId());
+        List<CRMEvent> crmEvents = crmEventReader.getCRMEvents(fromDate);
+        for (CRMEvent crmEvent : crmEvents) {
+            ClientData clientData = clientDataProvider.getClientData(crmEvent.getClientId());
+
             // TODO construct data for GA
+            GAEvent gaEvent = null;
+            sendGAEvent(gaEvent);
         }
+    }
+
+    @Override
+    public void sendGAEvent(GAEvent gaEvent) {
+        gaEventLogger.logEvent(gaEvent);
     }
 }
