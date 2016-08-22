@@ -35,7 +35,7 @@ public class ModuleResource extends SpringBeanAutowiringSupport {
     }
 
     @POST
-    @Path("ga-event")
+    @Path("/ga-event")
     @Consumes("application/json")
     @Produces("application/json")
     public Response sendGaEvent(GAEvent gaEvent) {

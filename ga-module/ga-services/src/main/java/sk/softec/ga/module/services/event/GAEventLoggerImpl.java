@@ -18,7 +18,7 @@ public class GAEventLoggerImpl implements GAEventLogger {
     public boolean logEvent(GAEvent gaEvent) {
         GoogleAnalytics ga = new GoogleAnalytics(GA_APP_ID);
         ga.post(new PageViewHit("http://alf.softec.sk:8080/clientdb", "IB Test"));
-
+        System.out.println("GA Event logged");
         return true;
     }
 }

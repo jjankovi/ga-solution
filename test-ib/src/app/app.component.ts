@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 import {LoginService} from "./login/login.service";
+import {LoggerService} from "./common/logger.service";
+import {GAModuleService} from "./common/gamodule/gamodule.service";
 
 @Component({
   moduleId: module.id,
   selector: 'ib-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers: [LoginService]
+  providers: [LoginService, LoggerService, GAModuleService]
 })
 export class AppComponent {
 
