@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.CRMConnector;
 import sk.softec.ga.module.connector.api.ClientDBConnector;
+import sk.softec.ga.module.connector.exception.CRMConnectionException;
 import sk.softec.ga.module.connector.model.ClientData;
 import sk.softec.ga.module.connector.model.ClientIdentity;
 
@@ -25,7 +26,7 @@ public class ClientDataProviderImpl implements ClientDataProvider {
     }
 
     @Override
-    public ClientData getClientData(String clientId) {
+    public ClientData getClientData(String clientId) throws CRMConnectionException {
         return crmConnector.getClientData(clientId);
     }
 }

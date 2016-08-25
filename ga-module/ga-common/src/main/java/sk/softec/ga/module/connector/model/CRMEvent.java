@@ -1,5 +1,6 @@
 package sk.softec.ga.module.connector.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ public class CRMEvent {
 
     private String eventType;
 
-    private Date creationTs;
+    private LocalDateTime creationTs;
 
     public Long getId() {
         return id;
@@ -39,11 +40,11 @@ public class CRMEvent {
         this.eventType = eventType;
     }
 
-    public Date getCreationTs() {
+    public LocalDateTime getCreationTs() {
         return creationTs;
     }
 
-    public void setCreationTs(Date creationTs) {
+    public void setCreationTs(LocalDateTime creationTs) {
         this.creationTs = creationTs;
     }
 }

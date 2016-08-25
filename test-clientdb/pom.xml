@@ -82,7 +82,7 @@
                         <phase>process-classes</phase>
                         <configuration>
                             <hibernateDialect>org.hibernate.dialect.Oracle10gDialect</hibernateDialect>
-                            <outputFile>${basedir}/db/schema/clientdb_create.oracle.sql</outputFile>
+                            <outputFile>${basedir}/../db/schema/clientdb_create.oracle.sql</outputFile>
                             <target>NONE</target>
                             <type>CREATE</type>
                             <skip>false</skip>

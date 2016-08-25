@@ -7,8 +7,8 @@
 
     create table CRM_EVENT (
         ID number(19,0) not null,
-        creationTs timestamp,
-        eventType number(10,0),
+        CREATION_TS timestamp,
+        EVENT_TYPE varchar2(255 char),
         CLIENT_ID number(19,0) not null,
         primary key (ID)
     );

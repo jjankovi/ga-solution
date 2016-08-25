@@ -1,5 +1,14 @@
 /test-clientdb/test-clientdb.iml
 /test-crm/test-crm.iml
+/test-crm/target
+/test-clientdb/target
+/ga-module/ga-web/target
+/ga-module/ga-services/target
+/ga-module/ga-crm-connector/target
+/ga-module/ga-common/target
+/ga-module/ga-clientdb-connector/target
+/ga-module/target
+/target
 /ga-module/ga-web/ga-web.iml
 /ga-module/ga-services/ga-services.iml
 /ga-module/ga-crm-connector/ga-crm-connector.iml

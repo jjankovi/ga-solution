@@ -9,8 +9,10 @@ import sk.softec.ga.crm.service.CRMService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jankovj on 12. 8. 2016.
@@ -24,8 +26,17 @@ public class CRMResource extends SpringBeanAutowiringSupport {
     @GET
     @Path("/event")
     @Produces("application/json")
-    public Response getAllEvents(@QueryParam("fromDate") Date fromDate) {
-        List<CRMEvent> events = crmService.getAllEvents(fromDate);
+    public Response getAllEvents(@QueryParam("fromDate") String fromDate, @QueryParam("batchSize") Integer batchSize) {
+        Date from = null;
+
+        if (fromDate != null) {
+            try {
+                from = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss").parse(fromDate);
+            } catch (ParseException e) {
+            }
+        }
+
+        List<CRMEvent> events = crmService.getAllEvents(from, batchSize);
         return Response.ok().entity(events).build();
     }
 

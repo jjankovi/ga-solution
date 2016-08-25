@@ -1,21 +1,29 @@
 package sk.softec.ga.module.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sk.softec.ga.module.connector.exception.CRMConnectionException;
 import sk.softec.ga.module.connector.model.*;
 import sk.softec.ga.module.services.cid.CIDGenerator;
 import sk.softec.ga.module.services.client.ClientDataProvider;
 import sk.softec.ga.module.services.crm.CRMEventReader;
-import sk.softec.ga.module.services.event.GAEventLogger;
+import sk.softec.ga.module.services.event.GAEventSendException;
+import sk.softec.ga.module.services.event.GAEventSender;
+import sk.softec.ga.module.services.model.AppParam;
+import sk.softec.ga.module.services.parameter.ParameterService;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Iterator;
 
 /**
  * Created by jankovj on 15. 8. 2016.
  */
 @Service
 public class ModuleServiceImpl implements ModuleService {
+
+    private static final Logger log = LoggerFactory.getLogger(ModuleServiceImpl.class);
 
     @Autowired
     CIDGenerator cidGenerator;
@@ -27,7 +35,10 @@ public class ModuleServiceImpl implements ModuleService {
     CRMEventReader crmEventReader;
 
     @Autowired
-    GAEventLogger gaEventLogger;
+    GAEventSender gaEventSender;
+
+    @Autowired
+    ParameterService parameterService;
 
     @Override
     public String generateCID(String input) {
@@ -41,27 +52,49 @@ public class ModuleServiceImpl implements ModuleService {
         cidData.setCid(cidGenerator.generateCID(input));
         ClientIdentity identity = clientDataProvider.getClientIdentity(input);
         if (identity != null) {
-            cidData.setClientData(clientDataProvider.getClientData(identity.getId()));
+            try {
+                cidData.setClientData(clientDataProvider.getClientData(identity.getId()));
+            } catch (CRMConnectionException exc) {
+                log.error("Error when getting Client Data.", exc);
+            }
         }
         return cidData;
     }
 
     @Override
     public void checkCRMEvents() {
-        // TODO obtain last checked events time
-        Date fromDate = null;
-        List<CRMEvent> crmEvents = crmEventReader.getCRMEvents(fromDate);
-        for (CRMEvent crmEvent : crmEvents) {
-            ClientData clientData = clientDataProvider.getClientData(crmEvent.getClientId());
+        LocalDateTime fromDate = parameterService.getParamAsDateTime(AppParam.CRM_EVENT_READ_LAST_TIME);
+        Integer batchSize = parameterService.getParamAsInt(AppParam.CRM_EVENT_READ_BATCH_SIZE);
 
-            // TODO construct data for GA
-            GAEvent gaEvent = null;
-            sendGAEvent(gaEvent);
+        try {
+            Iterator<CRMEvent> iter = crmEventReader.getCRMEvents(fromDate, batchSize).iterator();
+            while (iter.hasNext()) {
+                CRMEvent crmEvent = iter.next();
+
+                ClientData clientData = clientDataProvider.getClientData(crmEvent.getClientId());
+                GAEvent gaEvent = prepareGAEvent(clientData);
+
+                sendGAEvent(gaEvent);
+
+                if (!iter.hasNext()) {
+                    parameterService.setValue(AppParam.CRM_EVENT_READ_LAST_TIME, crmEvent.getCreationTs());
+                }
+            }
+        } catch (Exception exc) {
+            log.error("Error when checking CRM events", exc);
         }
     }
 
     @Override
-    public void sendGAEvent(GAEvent gaEvent) {
-        gaEventLogger.logEvent(gaEvent);
+    public void sendGAEvent(GAEvent gaEvent) throws GAEventSendException {
+        gaEventSender.sendEvent(gaEvent);
+    }
+
+    private GAEvent prepareGAEvent(ClientData clientData) {
+        GAEvent gaEvent = new GAEvent();
+
+        gaEvent.setCid(generateCID(clientData.getClientId()));
+
+        return gaEvent;
     }
 }

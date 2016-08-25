@@ -59,4 +59,30 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>de.juplo</groupId>
+                <artifactId>hibernate4-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>oracle</id>
+                        <goals>
+                            <goal>export</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <hibernateDialect>org.hibernate.dialect.Oracle10gDialect</hibernateDialect>
+                            <outputFile>${basedir}/../../db/schema/gamodule_create.oracle.sql</outputFile>
+                            <target>NONE</target>
+                            <type>CREATE</type>
+                            <skip>false</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

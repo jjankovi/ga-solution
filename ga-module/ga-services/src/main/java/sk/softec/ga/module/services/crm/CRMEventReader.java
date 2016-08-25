@@ -1,7 +1,9 @@
 package sk.softec.ga.module.services.crm;
 
+import sk.softec.ga.module.connector.exception.CRMConnectionException;
 import sk.softec.ga.module.connector.model.CRMEvent;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Date;
 
@@ -10,6 +12,6 @@ import java.util.Date;
  */
 public interface CRMEventReader {
 
-    List<CRMEvent> getCRMEvents(Date fromDate);
+    List<CRMEvent> getCRMEvents(LocalDateTime fromDate, Integer batchSize) throws CRMConnectionException;
 
 }

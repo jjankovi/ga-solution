@@ -5,6 +5,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sk.softec.ga.module.connector.model.CidData;
 import sk.softec.ga.module.connector.model.GAEvent;
 import sk.softec.ga.module.services.ModuleService;
+import sk.softec.ga.module.services.event.GAEventSendException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -39,8 +40,12 @@ public class ModuleResource extends SpringBeanAutowiringSupport {
     @Consumes("application/json")
     @Produces("application/json")
     public Response sendGaEvent(GAEvent gaEvent) {
-        moduleService.sendGAEvent(gaEvent);
-        return Response.ok().build();
+        try {
+            moduleService.sendGAEvent(gaEvent);
+            return Response.ok().build();
+        } catch (GAEventSendException e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 }

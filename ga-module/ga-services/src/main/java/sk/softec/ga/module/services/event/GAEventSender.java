@@ -6,8 +6,8 @@ import sk.softec.ga.module.connector.model.GAEvent;
 /**
  * Created by jankovj on 15. 8. 2016.
  */
-public interface GAEventLogger {
+public interface GAEventSender {
 
-    boolean logEvent(GAEvent gaEvent);
+    void sendEvent(GAEvent gaEvent) throws GAEventSendException;
 
 }

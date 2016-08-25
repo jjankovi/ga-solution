@@ -24,8 +24,11 @@ public class CRMEvent {
     @JoinColumn(name="CLIENT_ID")
     private CRMClientRate clientRate;
 
+    @Column(name = "EVENT_TYPE")
+    @Enumerated(EnumType.STRING)
     private CRMEventType eventType;
 
+    @Column(name = "CREATION_TS")
     private Date creationTs;
 
     public Long getId() {

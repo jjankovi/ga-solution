@@ -3,9 +3,10 @@ package sk.softec.ga.module.services.crm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.CRMConnector;
+import sk.softec.ga.module.connector.exception.CRMConnectionException;
 import sk.softec.ga.module.connector.model.CRMEvent;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class CRMEventReaderImpl implements CRMEventReader {
     private CRMConnector crmConnector;
 
     @Override
-    public List<CRMEvent> getCRMEvents(Date fromDate) {
-        return crmConnector.getClientEvents(fromDate);
+    public List<CRMEvent> getCRMEvents(LocalDateTime fromDate, Integer batchSize) throws CRMConnectionException {
+        return crmConnector.getClientEvents(fromDate, batchSize);
     }
 }
