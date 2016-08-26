@@ -3,12 +3,6 @@
     <deployment>
         <exclude-subsystems>
             <subsystem name="jaxrs" />
-            <subsystem name="jpa" />
         </exclude-subsystems>
-        <exclusions>
-            <module name="javax.persistence.api" />
-            <module name="javaee.api"/>
-            <module name="org.hibernate" />
-        </exclusions>
     </deployment>
 </jboss-deployment-structure>

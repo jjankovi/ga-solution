@@ -2,6 +2,8 @@ package sk.softec.ga.module.services.parameter;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 @Transactional
 public class ParameterServiceImpl implements ParameterService {
 
+    private static final Logger log = LoggerFactory.getLogger(ParameterServiceImpl.class);
     private static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
     private DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
@@ -28,6 +31,8 @@ public class ParameterServiceImpl implements ParameterService {
 
     @Override
     public void setValue(String paramName, Object paramValue) {
+        log.debug("Setting parameter with name {} to new value {}", paramName, paramValue);
+
         AppParam appParam = _getAppParam(paramName);
 
         if (paramValue == null) {

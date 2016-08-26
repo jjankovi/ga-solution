@@ -45,20 +45,23 @@ public class TaBaCRMConnector implements CRMConnector {
 
     @Override
     public List<CRMEvent> getClientEvents(LocalDateTime fromDate, Integer batchSize) throws CRMConnectionException {
-        log.debug("Getting CRM client events fromDate: {} and batchSize: {} ...", fromDate, batchSize);
         String response = fetchClientEvents(fromDate, batchSize);
         return parseClientEventResponse(response);
     }
 
     private String fetchClientData(String clientId) throws CRMConnectionException {
         try {
+            log.debug("Fetching crm client data for cliendId {}", clientId);
+
             return doGetOnUrl(CRM_CLIENT_RATE_URL + clientId);
         } catch (Exception exc) {
-            throw new CRMConnectionException();
+            throw new CRMConnectionException(exc.getMessage());
         }
     }
 
     private String fetchClientEvents(LocalDateTime fromDate, Integer batchSize) throws CRMConnectionException {
+        log.debug("Getting CRM client events fromDate: {} and batchSize: {} ...", fromDate, batchSize);
+
         String uri = CRM_CLIENT_EVENT_URL;
         if (fromDate != null) {
             uri += "fromDate=" + fromDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy-HH:mm:ss"));
@@ -71,7 +74,7 @@ public class TaBaCRMConnector implements CRMConnector {
         try {
             return doGetOnUrl(uri);
         } catch (Exception exc) {
-            throw new CRMConnectionException();
+            throw new CRMConnectionException(exc.getMessage());
         }
     }
 

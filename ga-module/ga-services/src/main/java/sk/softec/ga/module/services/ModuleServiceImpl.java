@@ -16,6 +16,7 @@ import sk.softec.ga.module.services.parameter.ParameterService;
 
 import java.time.LocalDateTime;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by jankovj on 15. 8. 2016.
@@ -42,11 +43,15 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public String generateCID(String input) {
+        log.debug("Generating CID for input {}...", input);
+
         return cidGenerator.generateCID(input);
     }
 
     @Override
     public CidData generateCIDData(String input) {
+        log.debug("Generating CID with client data for input {}...", input);
+
         CidData cidData = new CidData();
 
         cidData.setCid(cidGenerator.generateCID(input));
@@ -67,13 +72,14 @@ public class ModuleServiceImpl implements ModuleService {
         Integer batchSize = parameterService.getParamAsInt(AppParam.CRM_EVENT_READ_BATCH_SIZE);
 
         try {
-            Iterator<CRMEvent> iter = crmEventReader.getCRMEvents(fromDate, batchSize).iterator();
+            List<CRMEvent> crmEvents = crmEventReader.getCRMEvents(fromDate, batchSize);
+            log.debug("{} CRM events read fromDate: {} and batchSize: {}", new Object[]{crmEvents.size(), fromDate, batchSize});
+
+            Iterator<CRMEvent> iter = crmEvents.iterator();
             while (iter.hasNext()) {
                 CRMEvent crmEvent = iter.next();
 
-                ClientData clientData = clientDataProvider.getClientData(crmEvent.getClientId());
-                GAEvent gaEvent = prepareGAEvent(clientData);
-
+                GAEvent gaEvent = prepareGAEvent(crmEvent);
                 sendGAEvent(gaEvent);
 
                 if (!iter.hasNext()) {
@@ -90,10 +96,12 @@ public class ModuleServiceImpl implements ModuleService {
         gaEventSender.sendEvent(gaEvent);
     }
 
-    private GAEvent prepareGAEvent(ClientData clientData) {
-        GAEvent gaEvent = new GAEvent();
+    private GAEvent prepareGAEvent(CRMEvent crmEvent) throws CRMConnectionException {
+        ClientData clientData = clientDataProvider.getClientData(crmEvent.getClientId());
 
+        GAEvent gaEvent = new GAEvent();
         gaEvent.setCid(generateCID(clientData.getClientId()));
+        // TODO add other information to GAEvent
 
         return gaEvent;
     }

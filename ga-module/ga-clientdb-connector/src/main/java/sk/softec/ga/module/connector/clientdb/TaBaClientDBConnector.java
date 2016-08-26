@@ -5,6 +5,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.ClientDBConnector;
@@ -20,6 +22,8 @@ import java.io.InputStreamReader;
 @Primary
 public class TaBaClientDBConnector implements ClientDBConnector {
 
+    private static final Logger log = LoggerFactory.getLogger(TaBaClientDBConnector.class);
+
     private static final String CLIENT_DB_URL = "http://localhost:8080/clientdb/api";
 
     @Override
@@ -30,6 +34,8 @@ public class TaBaClientDBConnector implements ClientDBConnector {
 
     private String fetchClientIdentity(String login) {
         try {
+            log.debug("Fetching client identity for login {}", login);
+
             CloseableHttpClient httpClient = HttpClients.createDefault();
 
             HttpGet get = new HttpGet(CLIENT_DB_URL + "?login=" + login);

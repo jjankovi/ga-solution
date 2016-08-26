@@ -11,6 +11,7 @@ public class AppParam {
 
     public static final String CRM_EVENT_READ_LAST_TIME = "CRM_EVENT_READ_LAST_TIME";
     public static final String CRM_EVENT_READ_BATCH_SIZE= "CRM_EVENT_READ_BATCH_SIZE";
+    public static final String CRM_EVENT_READ_INTERVAL= "CRM_EVENT_READ_INTERVAL";
 
     @Id
     @Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
