@@ -9,7 +9,7 @@
 
     <import resource="applicationContext-provided.xml" />
     <import resource="applicationContext-hibernate.xml" />
-    <import resource="applicationContext-schedule.xml" />
+    <import resource="applicationContext-scheduler.xml" />
 
     <context:annotation-config/>
 
