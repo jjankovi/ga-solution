@@ -1,0 +1,142 @@
+<nav class="pi-header" role="navigation" data-view="views/header" data-active-view="true">
+  <div class="pi-section-w pi-section-base">
+    <div class="pi-section pi-row-sm">
+      <!-- Phone -->
+      <div class="pi-row-block pi-row-block-txt">
+        <i class="pi-row-block-icon icon-phone pi-icon-base pi-icon-square"></i>Call Us:
+        <strong>+421 2 4949 0000</strong>
+      </div>
+      <!-- End phone -->
+
+      <!-- Email -->
+      <div class="pi-row-block pi-row-block-txt pi-hidden-xs"><i
+        class="pi-row-block-icon icon-mail pi-icon-base pi-icon-square"></i>Email: <a href="mailto:softec@softec.sk">softec@softec.sk</a>
+      </div>
+      <!-- End email -->
+
+      <!-- Social icons -->
+      <div class="pi-row-block pi-pull-right pi-hidden-2xs">
+        <ul class="pi-social-icons pi-stacked pi-jump pi-full-height pi-bordered pi-small pi-colored-bg clearFix">
+          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-twitter"><i
+            class="icon-twitter"></i></a>
+          </li>
+          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-facebook"><i
+            class="icon-facebook"></i></a></li>
+          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-linkedin"><i
+            class="icon-linkedin"></i></a></li>
+        </ul>
+      </div>
+      <!-- End social icons -->
+
+      <!-- Text -->
+      <div class="pi-row-block pi-row-block-txt pi-pull-right pi-hidden-xs">Follow us:</div>
+      <!-- End text -->
+    </div>
+  </div>
+
+  <div class="pi-header-sticky">
+    <div class="pi-section-w pi-section-white pi-shadow-bottom pi-row-reducible">
+      <div class="pi-section pi-row-lg">
+        <!-- Logo -->
+        <div class="pi-row-block pi-row-block-logo pi-padding-top-15">
+          <a href="http://uxp.softec.sk/CallCentrum/#accounts"><img class="pi-padding-top-10"
+                                                                    src="./img/softec-logo.jpg"
+                                                                    alt=""></a>
+        </div>
+        <!-- End logo -->
+        <!-- Text -->
+        <div class="pi-row-block pi-row-block-txt pi-italic pi-big-font pi-text-dark pi-hidden-2xs">Test GATE interface
+        </div>
+        <!-- End text -->
+        <div class="pi-row-block pi-has-hover-border pi-pull-right">
+          <ul class="pi-simple-menu pi-full-height" data-bind="foreach: router.navigationModel"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav><!-- /ko -->
+
+<router-outlet></router-outlet>
+
+<!-- ko compose: 'viewmodels/footer' -->
+<div class="durandal-wrapper" data-view="views/footer" data-active-view="true">
+  <div class="pi-section-w pi-border-bottom pi-border-top pi-section-grey">
+    <div class="pi-section pi-padding-bottom-10">
+      <div class="pi-row">
+        <div class="pi-col-md-4 pi-padding-bottom-30">
+          <h6 class="pi-margin-bottom-20 pi-weight-700 pi-uppercase pi-letter-spacing">
+            About Softec
+          </h6>
+          <p>
+            Softec s.r.o. was founded in 1990. Since its establishment Softec has been continually growing; besides
+            Slovakia, Softec is active also in other Central-European countries. Our main focus is providing IT services
+            and consulting, as well as elaborating and implementing complex integrated information systems. Softec is
+            leading company of the Softec Group, whose members share common visions a values.
+          </p>
+        </div>
+        <div class="pi-clearfix pi-hidden-lg-only pi-hidden-md-only"></div>
+        <div class="pi-col-md-4 pi-col-sm-6 pi-padding-bottom-30">
+          <h6 class="pi-margin-bottom-20 pi-weight-700 pi-uppercase pi-letter-spacing">
+            Location
+          </h6>
+          <ul class="pi-no-bullets">
+            <li>Jarošová 1, Bratislava 821 02, Slovakia</li>
+            <li><span class="pi-weight-600 pi-text-dark">Phone:</span> +421 2 4949 0000</li>
+            <li><span class="pi-weight-600 pi-text-dark">Fax:</span> +421 2 4949 0103</li>
+            <li><span class="pi-weight-600 pi-text-dark">Email:</span> <a href="http://uxp.softec.sk/CallCentrum/#">softec@softec.sk</a>
+            </li>
+          </ul>
+        </div>
+        <div class="pi-col-md-4 pi-col-sm-6 pi-padding-bottom-30">
+          <h6 class="pi-margin-bottom-15 pi-weight-700 pi-uppercase pi-letter-spacing">
+            Follow Us
+          </h6>
+          <ul class="pi-social-icons-simple pi-clearfix">
+            <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-twitter"><i class="icon-twitter"></i></a>
+            </li>
+            <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-facebook"><i
+              class="icon-facebook"></i></a></li>
+            <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-linkedin"><i
+              class="icon-linkedin"></i></a></li>
+          </ul>
+
+          <!-- Subscribe form -->
+          <form class="pi-grouped-input pi-pi-search-form-wide pi-margin-bottom-10">
+                    <span class="pi-col-sm-2">
+					    <button type="submit" class="btn pi-btn-base"><i class="icon-mail"></i></button>
+                    </span>
+            <div class="pi-col-sm-10">
+              <input type="text" class="form-control" placeholder="Enter e-mail for subscribe">
+            </div>
+          </form>
+          <!-- End subscribe form -->
+
+          <p class="pi-smaller-text pi-italic pi-letter-spacing pi-text-opacity-70">
+            We promise not to send you spam.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pi-section-w pi-section-grey pi-border-top-light pi-border-bottom-strong-base">
+    <div class="pi-section pi-row-md pi-center-text-2xs pi-clearfix">
+      <div class="pi-row-block pi-center-text-lg">
+        <ul class="pi-simple-menu pi-full-height pi-hidden-xs">
+          <li>
+            <a href="http://uxp.softec.sk/CallCentrum/#"><span>Help</span></a>
+          </li>
+          <li>
+            <a href="http://uxp.softec.sk/CallCentrum/#"><span>Privacy</span></a>
+          </li>
+          <li>
+            <a href="http://uxp.softec.sk/CallCentrum/#"><span>Terms</span></a>
+          </li>
+        </ul>
+      </div>
+      <span class="pi-row-block pi-pull-right pi-row-block-txt pi-hidden-xs">© 2014.
+        <a href="http://www.softec.sk/" class="pi-link-no-style">Softec Group</a>.
+      </span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TestGate</title>
+  <base href="/">
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="./Themes/durandal.css" rel="stylesheet">
+
+  <link href="./Themes/Aura/3dParty/colorbox/colorbox.css" rel="stylesheet">
+
+  <link href="./Themes/Aura/css/global.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/typo.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/slider.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/boxes.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/tables.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/shadows.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/pricing-tables.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/social.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/accordion.css" rel="stylesheet">
+  <link href="./Themes/Aura/css/tabs.css" rel="stylesheet">
+
+  <!--Fonts with Icons-->
+  <link rel="stylesheet" href="./Themes/Aura/3dParty/fontello/css/fontello.css">
+
+  <link href="./Themes/Aura/css/main.css" rel="stylesheet">
+
+  {{#unless environment.production}}
+  <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
+  {{/unless}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<gate-app>Loading...</gate-app>
+
+{{#each scripts.polyfills}}
+<script src="{{.}}"></script>
+{{/each}}
+<script>
+  System.import('system-config.js').then(function () {
+    System.import('main');
+  }).catch(console.error.bind(console));
+</script>
+
+</body>
+</html>

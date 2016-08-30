@@ -8,6 +8,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/test-gate/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/test-gate/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/test-gate/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/test-ib/dist" />
       <excludeFolder url="file://$MODULE_DIR$/test-ib/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/test-ib/tmp" />
