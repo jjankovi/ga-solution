@@ -1,64 +1,34 @@
-<div class="page-host" data-bind="router: { transition: &#39;entrance&#39; }">
-  <div class="durandal-wrapper" data-view="views/home" data-active-view="true">
-    <div class="pi-section-base pi-shadow-inside pi-padding-bottom-70">
-      <div class="pi-texture" style="background: url(./Themes/Aura/img/hexagon.png) repeat;"></div>
-      <div class="pi-section">
-        <div class="pi-text-center">
-          <h1 data-bind="text: title" class="">Vyhľadávanie klientov</h1>
-        </div>
-
-        <div class="pi-clearfix">
-          <div class="pi-col-sm-3"></div>
-          <span class="pi-col-sm-6">
-                <span data-bind="autocomplete: {
-                    dataUrl: &#39;api/data/clients&#39;,
-                    value: selectedId,
-                    text: selectedName,
-                    optionsValue: &#39;id&#39;,
-                    optionsText: &#39;displayText&#39;,
-                    customData: &#39;category&#39;,
-                    query: &#39;q&#39;,
-                    label: &#39;&#39;,
-                    placeholder: &#39;Zadajte meno/telefón/RČ klienta&#39;,
-                    tooltip: null,
-                    id: &#39;client&#39;,
-                    name: &#39;client&#39;,
-                    columnWidth: 12,
-                    labelWidth: 0,
-                    fieldWidth: 12
-                }">
-                  <section data-view="durantec/ui/widgets/webcontrols/autocomplete/view" data-active-view="true">
-                    <div data-bind="css: classNaming.groupParentClass, visible: visible" data-handle="input-parent"
-                         class="col-sm-12">
-                      <div data-bind="cssConfig: &#39;css.form.group&#39;" class="form-group">
-                        <div data-bind="css: classNaming.labelClass" class="control-label hidden">
-                          <label data-bind="text: label"></label>
-                          <i data-bind="cssConfig: &#39;css.icon.required&#39;, visible: requiredMarkAfterLabel"
-                             data-handle="required-mark"
-                             data-position="afterLabel" class="fa fa-asterisk fa-05x required" style="display: none;">
-                          </i>
-                        </div>
-                        <div data-bind="css: classNaming.inputParentClass" class="col-sm-12 col-sm-offset-0">
-                          <div class="input-group">
-                            <span class="twitter-typeahead"
-                                  style="position: relative; display: inline-block; direction: ltr;">
-                              <input type="text" class="form-control tt-hint" readonly=""
-                                     autocomplete="off" spellcheck="false" tabindex="-1"
-                                     style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1;">
-                              <input name="client" id="client" type="text" placeholder="Zadajte meno/telefón/RČ klienta"
-                                     class="form-control tt-input"
-                                     autocomplete="off" spellcheck="false" dir="auto"
-                                     style="position: relative; vertical-align: top; background-color: transparent;">
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                </span>
-            </span>
-          <div class="pi-col-sm-3"></div>
-        </div>
+<div class="page-host">
+  <div class="pi-section-base pi-shadow-inside pi-padding-bottom-70">
+    <div class="pi-texture" style="background: url(./Themes/Aura/img/hexagon.png) repeat;"></div>
+    <div class="pi-section">
+      <div class="pi-text-center">
+        <h1 data-bind="text: title" class="">Vyhľadávanie klientov</h1>
+      </div>
+      <div class="pi-clearfix">
+        <div class="pi-col-sm-3"></div>
+        <span class="pi-col-sm-6">
+          <section>
+            <div data-bind="css: classNaming.groupParentClass, visible: visible" data-handle="input-parent" class="col-sm-12">
+              <div data-bind="cssConfig: &#39;css.form.group&#39;" class="form-group">
+                <div data-bind="css: classNaming.inputParentClass" class="col-sm-12 col-sm-offset-0">
+                  <div class="input-group">
+                    <form (submit)="search()">
+                      <span class="twitter-typeahead"
+                            style="position: relative; display: inline-block; direction: ltr;">
+                        <input type="text" class="form-control tt-hint tt-input" tabindex="-1" [(ngModel)]="searchPattern" name="searchPattern"
+                               style="position: absolute; top: 0px; left: 0px; border-color: transparent;
+                               background-color: white; box-shadow: none; opacity: 1;"
+                               placeholder="Zadajte meno/telefón/RČ klienta">
+                      </span>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </span>
+        <div class="pi-col-sm-3"></div>
       </div>
     </div>
   </div>

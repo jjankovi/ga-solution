@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
+
 import {LoggerService} from "../common/logger.service";
+import {ClientService} from "../common/client.service";
 
 @Component({
   moduleId: module.id,
@@ -7,12 +9,17 @@ import {LoggerService} from "../common/logger.service";
 })
 export class HomeComponent {
 
-  constructor(private log:LoggerService) {
-    this.log.debug("HomeComponent initialized");
-  }
+  searchPattern:string;
 
-  ngOnDestroy() {
-    this.log.debug("HomeComponent is going to be destroyed");
+  constructor(private log:LoggerService, private clientService:ClientService) {}
+
+  search() {
+    this.log.debug("Entered searchPattern: " + this.searchPattern);
+    if (!this.searchPattern) {
+      this.log.debug("Search pattern is empty. Searching will not be initiated");
+      return;
+    }
+    this.clientService.searchClient(this.searchPattern);
   }
 
 }

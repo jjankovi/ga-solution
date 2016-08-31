@@ -1,64 +1,50 @@
 <nav class="pi-header" role="navigation" data-view="views/header" data-active-view="true">
   <div class="pi-section-w pi-section-base">
     <div class="pi-section pi-row-sm">
-      <!-- Phone -->
       <div class="pi-row-block pi-row-block-txt">
         <i class="pi-row-block-icon icon-phone pi-icon-base pi-icon-square"></i>Call Us:
         <strong>+421 2 4949 0000</strong>
       </div>
-      <!-- End phone -->
-
-      <!-- Email -->
       <div class="pi-row-block pi-row-block-txt pi-hidden-xs"><i
         class="pi-row-block-icon icon-mail pi-icon-base pi-icon-square"></i>Email: <a href="mailto:softec@softec.sk">softec@softec.sk</a>
       </div>
-      <!-- End email -->
-
-      <!-- Social icons -->
       <div class="pi-row-block pi-pull-right pi-hidden-2xs">
         <ul class="pi-social-icons pi-stacked pi-jump pi-full-height pi-bordered pi-small pi-colored-bg clearFix">
-          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-twitter"><i
+          <li><a href="javascript:void(0)" class="pi-social-icon-twitter"><i
             class="icon-twitter"></i></a>
           </li>
-          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-facebook"><i
+          <li><a href="javascript:void(0)" class="pi-social-icon-facebook"><i
             class="icon-facebook"></i></a></li>
-          <li><a href="http://uxp.softec.sk/CallCentrum/#" class="pi-social-icon-linkedin"><i
+          <li><a href="javascript:void(0)" class="pi-social-icon-linkedin"><i
             class="icon-linkedin"></i></a></li>
         </ul>
       </div>
-      <!-- End social icons -->
-
-      <!-- Text -->
       <div class="pi-row-block pi-row-block-txt pi-pull-right pi-hidden-xs">Follow us:</div>
-      <!-- End text -->
     </div>
   </div>
 
   <div class="pi-header-sticky">
     <div class="pi-section-w pi-section-white pi-shadow-bottom pi-row-reducible">
       <div class="pi-section pi-row-lg">
-        <!-- Logo -->
         <div class="pi-row-block pi-row-block-logo pi-padding-top-15">
-          <a href="http://uxp.softec.sk/CallCentrum/#accounts"><img class="pi-padding-top-10"
-                                                                    src="./img/softec-logo.jpg"
-                                                                    alt=""></a>
+          <a href="javascript:void(0)"><img class="pi-padding-top-10" src="./img/softec-logo.jpg" alt=""></a>
         </div>
-        <!-- End logo -->
-        <!-- Text -->
         <div class="pi-row-block pi-row-block-txt pi-italic pi-big-font pi-text-dark pi-hidden-2xs">Test GATE interface
         </div>
-        <!-- End text -->
         <div class="pi-row-block pi-has-hover-border pi-pull-right">
-          <ul class="pi-simple-menu pi-full-height" data-bind="foreach: router.navigationModel"></ul>
+          <ul class="pi-simple-menu pi-full-height">
+            <li routerLinkActive="active">
+              <a routerLink="/home" >Vyhľadávanie</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-</nav><!-- /ko -->
+</nav>
 
 <router-outlet></router-outlet>
 
-<!-- ko compose: 'viewmodels/footer' -->
 <div class="durandal-wrapper" data-view="views/footer" data-active-view="true">
   <div class="pi-section-w pi-border-bottom pi-border-top pi-section-grey">
     <div class="pi-section pi-padding-bottom-10">

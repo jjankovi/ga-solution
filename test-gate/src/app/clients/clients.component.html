@@ -1,0 +1,41 @@
+<div class="page-host">
+  <div class="pi-section-w pi-shadow-inside-top pi-section-white">
+    <div class="pi-section pi-borders-light">
+      <div class="pi-text-center pi-margin-bottom-20">
+        <h2 class="pi-uppercase pi-weight-700 pi-has-border pi-has-tall-border pi-has-short-border pi-margin-bottom-30">
+          Výsledok vyhľadávania klientov
+        </h2>
+      </div>
+      <div class="pi-row">
+        <div class="pi-col-xs-12 pi-margin-bottom-20 pi-responsive-table-xs">
+          <table class="pi-table pi-table-zebra pi-table-hovered">
+            <thead>
+              <tr>
+                <th style="width: 30%">Meno</th>
+                <th style="width: 35%">Priezvisko</th>
+                <th style="width: 20%">Dátum narodenia</th>
+                <th style="width: 15%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let client of clients | async'>
+                <td>{{client.firstName}}</td>
+                <td>{{client.lastName}}</td>
+                <td>{{client.birthDay}}</td>
+                <td>
+                  <span>
+                    <button class="btn pi-btn-base pi-uppercase pi-weight-700 pi-letter-spacing" (click)="chooseClient(client)">
+                      <i class="icon-check pi-icon-left"></i>Vybrať
+                    </button>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
