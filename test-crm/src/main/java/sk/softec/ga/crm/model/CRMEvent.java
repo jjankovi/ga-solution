@@ -16,8 +16,8 @@ public class CRMEvent {
 
     @Id
     @Column(name = "ID", unique = true, nullable = false, precision = 22, scale = 0)
-    @GenericGenerator(name = SEQUENCE_NAME, strategy = "sequence", parameters = {@org.hibernate.annotations.Parameter(name = "sequence", value=SEQUENCE_NAME)})
     @GeneratedValue(generator = SEQUENCE_NAME, strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = SEQUENCE_NAME, sequenceName = SEQUENCE_NAME, allocationSize = 1)
     private Long id;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)

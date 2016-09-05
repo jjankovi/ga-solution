@@ -2,7 +2,7 @@ package sk.softec.ga.crm.service;
 
 import sk.softec.ga.crm.model.CRMClientRate;
 import sk.softec.ga.crm.model.CRMEvent;
-import sk.softec.ga.crm.model.CRMEventType;
+import sk.softec.ga.crm.model.dto.CRMEventContainer;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface CRMService {
 
-    boolean logEvent(Long clientId, CRMEventType eventType);
+    boolean logEvent(Long clientId, CRMEventContainer eventContainer);
 
     List<CRMEvent> getAllEvents(Date fromDate, Integer batchSize);
 

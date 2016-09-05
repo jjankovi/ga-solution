@@ -3,6 +3,7 @@ package sk.softec.ga.clientdb.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by jankovj on 12. 8. 2016.
@@ -18,11 +19,21 @@ public class Client {
     @GeneratedValue(generator = SEQUENCE_NAME, strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "LOGIN")
     private String login;
 
+    @Column(name = "PASSWORD")
     private String password;
 
-    private String name;
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "BIRTHDAY")
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
 
     public Long getId() {
         return id;
@@ -48,11 +59,27 @@ public class Client {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 }

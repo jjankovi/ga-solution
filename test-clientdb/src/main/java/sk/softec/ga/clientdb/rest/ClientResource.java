@@ -21,14 +21,7 @@ public class ClientResource extends SpringBeanAutowiringSupport {
     @GET
     @Produces("application/json")
     public Response listAllClients(@QueryParam("login") String login, @QueryParam("name") String name) {
-        if (StringUtils.isEmpty(login) && StringUtils.isEmpty(name)) {
-            return Response.ok().entity(clientService.getAllClients()).build();
-        }
-        if (!StringUtils.isEmpty(login)) {
-            return Response.ok().entity(clientService.searchByLogin(login)).build();
-        } else {
-            return Response.ok().entity(clientService.searchByName(name)).build();
-        }
+        return Response.ok().entity(clientService.getAllClients(login, name)).build();
     }
 
     @GET

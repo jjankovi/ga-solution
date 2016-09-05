@@ -2,6 +2,7 @@ package sk.softec.ga.crm.rest;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import sk.softec.ga.crm.filter.CORSResponseFilter;
+import sk.softec.ga.crm.rest.serconfig.JacksonMapperProvider;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,6 +29,7 @@ public class RestApplication extends ResourceConfig {
 
     public Set<Class<?>> getProviders() {
         return new HashSet<Class<?>>(Arrays.<Class<?>>asList(
+                JacksonMapperProvider.class,
                 CORSResponseFilter.class
         ));
     }

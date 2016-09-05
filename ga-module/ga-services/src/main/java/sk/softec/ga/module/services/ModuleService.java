@@ -1,7 +1,7 @@
 package sk.softec.ga.module.services;
 
 import sk.softec.ga.module.connector.model.CidData;
-import sk.softec.ga.module.connector.model.GAEvent;
+import sk.softec.ga.module.services.model.GAEvent;
 import sk.softec.ga.module.services.event.GAEventSendException;
 
 /**

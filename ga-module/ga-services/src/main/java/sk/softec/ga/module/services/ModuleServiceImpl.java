@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.exception.CRMConnectionException;
 import sk.softec.ga.module.connector.model.*;
+import sk.softec.ga.module.connector.model.clientdb.ClientIdentity;
+import sk.softec.ga.module.connector.model.crm.CRMEvent;
+import sk.softec.ga.module.connector.model.crm.ClientData;
+import sk.softec.ga.module.services.model.GAEvent;
 import sk.softec.ga.module.services.cid.CIDGenerator;
 import sk.softec.ga.module.services.client.ClientDataProvider;
 import sk.softec.ga.module.services.crm.CRMEventReader;
@@ -93,6 +97,8 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public void sendGAEvent(GAEvent gaEvent) throws GAEventSendException {
+        gaEvent.setCreationTs(LocalDateTime.now());
+
         gaEventSender.sendEvent(gaEvent);
     }
 

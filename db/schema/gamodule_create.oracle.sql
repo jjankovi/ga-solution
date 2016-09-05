@@ -7,8 +7,9 @@
         primary key (ID)
     );
 
-    create table GA_EVENT_LOG (
+    create table GA_EVENT (
         ID number(19,0) not null,
+        CID varchar2(255 char),
         CREATION_TS raw(255),
         GA_EVENT_STATUS varchar2(255 char),
         GA_APP_ID varchar2(255 char),
@@ -16,3 +17,4 @@
     );
 
     create sequence GA_EVENT_SEQ;
+

@@ -1,5 +1,7 @@
 package sk.softec.ga.module.connector.model;
 
+import sk.softec.ga.module.connector.model.crm.ClientData;
+
 /**
  * Created by jankovj on 15. 8. 2016.
  */

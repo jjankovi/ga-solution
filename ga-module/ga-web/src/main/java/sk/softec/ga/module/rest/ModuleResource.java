@@ -3,7 +3,7 @@ package sk.softec.ga.module.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sk.softec.ga.module.connector.model.CidData;
-import sk.softec.ga.module.connector.model.GAEvent;
+import sk.softec.ga.module.services.model.GAEvent;
 import sk.softec.ga.module.services.ModuleService;
 import sk.softec.ga.module.services.event.GAEventSendException;
 

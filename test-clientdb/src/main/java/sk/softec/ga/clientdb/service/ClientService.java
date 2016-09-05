@@ -9,11 +9,7 @@ import java.util.List;
  */
 public interface ClientService {
 
-    List<Client> getAllClients();
+    List<Client> getAllClients(String login, String name);
 
     Client login(String login, String password);
-
-    Client searchByLogin(String login);
-
-    Client searchByName(String name);
 }

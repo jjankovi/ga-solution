@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- * Created by jankovj on 26. 8. 2016.
+ * Created by jankovj on 19. 8. 2016.
  */
 @Entity
-@Table(name = "GA_EVENT_LOG")
-public class GAEventLog {
+@Table(name = "GA_EVENT")
+public class GAEvent {
 
     private static final String SEQUENCE_NAME = "GA_EVENT_SEQ";
 
@@ -17,6 +17,9 @@ public class GAEventLog {
     @GeneratedValue(generator = SEQUENCE_NAME, strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = SEQUENCE_NAME, sequenceName = SEQUENCE_NAME, allocationSize = 1)
     private Long id;
+
+    @Column(name = "CID")
+    private String cid;
 
     @Column(name = "CREATION_TS")
     private LocalDateTime creationTs;
@@ -34,6 +37,14 @@ public class GAEventLog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public LocalDateTime getCreationTs() {

@@ -1,4 +1,4 @@
-package sk.softec.ga.module.connector.model;
+package sk.softec.ga.module.connector.model.crm;
 
 import java.time.LocalDateTime;
 import java.util.Date;

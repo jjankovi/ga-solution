@@ -4,13 +4,14 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.ClientDBConnector;
-import sk.softec.ga.module.connector.model.ClientIdentity;
+import sk.softec.ga.module.connector.model.clientdb.ClientIdentity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -59,12 +60,19 @@ public class TaBaClientDBConnector implements ClientDBConnector {
     }
 
     private ClientIdentity parseResponse(String response) {
-        JSONObject parsedResponse = new JSONObject(response);
+        JSONArray parsedResponse = new JSONArray(response);
 
+        if (parsedResponse.length() != 1) {
+            return null;
+        }
+
+        JSONObject client = (JSONObject) parsedResponse.get(0);
         ClientIdentity identity = new ClientIdentity();
-        identity.setId(String.valueOf(parsedResponse.getLong("id")));
-        identity.setLogin(parsedResponse.getString("login"));
-        identity.setName(parsedResponse.getString("name"));
+        identity.setId(String.valueOf(client.getLong("id")));
+        identity.setLogin(client.getString("login"));
+        identity.setFirstName(client.getString("firstName"));
+        identity.setLastName(client.getString("lastName"));
+
         return identity;
     }
 }

@@ -1,7 +1,7 @@
 package sk.softec.ga.module.services.crm;
 
 import sk.softec.ga.module.connector.exception.CRMConnectionException;
-import sk.softec.ga.module.connector.model.CRMEvent;
+import sk.softec.ga.module.connector.model.crm.CRMEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;

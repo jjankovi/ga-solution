@@ -1,4 +1,4 @@
-package sk.softec.ga.module.connector.model;
+package sk.softec.ga.module.connector.model.crm;
 
 /**
  * Created by jankovj on 15. 8. 2016.

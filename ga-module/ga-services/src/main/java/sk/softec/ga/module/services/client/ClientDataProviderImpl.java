@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.CRMConnector;
 import sk.softec.ga.module.connector.api.ClientDBConnector;
 import sk.softec.ga.module.connector.exception.CRMConnectionException;
-import sk.softec.ga.module.connector.model.ClientData;
-import sk.softec.ga.module.connector.model.ClientIdentity;
+import sk.softec.ga.module.connector.model.crm.ClientData;
+import sk.softec.ga.module.connector.model.clientdb.ClientIdentity;
 
 /**
  * Created by jankovj on 12. 8. 2016.

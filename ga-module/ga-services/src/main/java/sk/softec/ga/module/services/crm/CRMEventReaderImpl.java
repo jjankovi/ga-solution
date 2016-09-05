@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.softec.ga.module.connector.api.CRMConnector;
 import sk.softec.ga.module.connector.exception.CRMConnectionException;
-import sk.softec.ga.module.connector.model.CRMEvent;
+import sk.softec.ga.module.connector.model.crm.CRMEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;

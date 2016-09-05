@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import sk.softec.ga.crm.model.CRMClientRate;
 import sk.softec.ga.crm.model.CRMEvent;
-import sk.softec.ga.crm.model.CRMEventType;
+import sk.softec.ga.crm.model.dto.CRMEventContainer;
 import sk.softec.ga.crm.service.CRMService;
 
 import javax.ws.rs.*;
@@ -32,6 +32,7 @@ public class CRMResource extends SpringBeanAutowiringSupport {
         if (fromDate != null) {
             try {
                 from = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss").parse(fromDate);
+
             } catch (ParseException e) {
             }
         }
@@ -52,8 +53,8 @@ public class CRMResource extends SpringBeanAutowiringSupport {
     @Path("/event/{clientId}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response logEvent(@PathParam("clientId") Long clientId, CRMEventType eventType) {
-        boolean result = crmService.logEvent(clientId, eventType);
+    public Response logEvent(@PathParam("clientId") Long clientId, CRMEventContainer eventContainer) {
+        boolean result = crmService.logEvent(clientId, eventContainer);
         return Response.ok().entity(result).build();
     }
 

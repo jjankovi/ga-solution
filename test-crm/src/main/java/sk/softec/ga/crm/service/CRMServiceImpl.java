@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sk.softec.ga.crm.model.CRMClientRate;
 import sk.softec.ga.crm.model.CRMEvent;
-import sk.softec.ga.crm.model.CRMEventType;
+import sk.softec.ga.crm.model.dto.CRMEventContainer;
 
 import java.util.*;
 
@@ -23,16 +23,20 @@ public class CRMServiceImpl implements CRMService {
     private SessionFactory sessionFactory;
 
     @Override
-    public boolean logEvent(Long clientId, CRMEventType eventType) {
-        if (clientId != null && eventType != null) {
+    public boolean logEvent(Long clientId, CRMEventContainer eventContainer) {
+        if (clientId != null && eventContainer != null) {
             Session session = sessionFactory.getCurrentSession();
 
             CRMClientRate clientRate = (CRMClientRate) session.byId(CRMClientRate.class).load(clientId);
 
             CRMEvent crmEvent = new CRMEvent();
             crmEvent.setClientRate(clientRate);
-            crmEvent.setCreationTs(new Date());
-            crmEvent.setEventType(eventType);
+
+            Calendar now = Calendar.getInstance();
+            now.clear(Calendar.MILLISECOND);
+            crmEvent.setCreationTs(now.getTime());
+
+            crmEvent.setEventType(eventContainer.getEventType());
             session.save(crmEvent);
             return true;
         }

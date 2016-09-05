@@ -11,11 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import sk.softec.ga.module.connector.model.GAEvent;
-import sk.softec.ga.module.services.model.GAEventLog;
+import sk.softec.ga.module.services.model.GAEvent;
 import sk.softec.ga.module.services.model.GAEventStatus;
-
-import java.time.LocalDateTime;
 
 /**
  * Created by jankovj on 15. 8. 2016.
@@ -39,40 +36,33 @@ public class GAEventSenderImpl implements GAEventSender {
 
     @Override
     public void sendEvent(GAEvent gaEvent) throws GAEventSendException {
-        log.debug("Sending GA Event to " + GA_APP_ID + " ...");
+        gaEvent.setGaAppId(GA_APP_ID);
+        log.debug("Sending GA Event to " + gaEvent.getGaAppId() + " ...");
 
-        GAEventLog eventLog = _prepareGAEventLog();
-        eventLog = _saveGAEventStatus(eventLog, GAEventStatus.SENDING);
+        gaEvent = _saveGAEventStatus(gaEvent, GAEventStatus.SENDING);
         try {
+            // TODO use CID to identify client
+
             GoogleAnalytics ga = new GoogleAnalytics(GA_APP_ID);
             ga.post(new PageViewHit("http://alf.softec.sk:8080/clientdb", "IB Test"));
         } catch (Exception exc) {
             log.error(exc.getLocalizedMessage());
-            _saveGAEventStatus(eventLog, GAEventStatus.ERROR);
+            _saveGAEventStatus(gaEvent, GAEventStatus.ERROR);
             throw new GAEventSendException();
         }
         log.debug("GA Event sent to " + GA_APP_ID);
-        _saveGAEventStatus(eventLog, GAEventStatus.SUCCESS);
+        _saveGAEventStatus(gaEvent, GAEventStatus.SUCCESS);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public GAEventLog saveGAEventLog(GAEventLog eventLog) {
+    public GAEvent saveGAEvent(GAEvent gaEvent) {
         Session session = sessionFactory.getCurrentSession();
-
-        return (GAEventLog) session.merge(eventLog);
+        return (GAEvent) session.merge(gaEvent);
     }
 
-    private GAEventLog _prepareGAEventLog() {
-        GAEventLog eventLog = new GAEventLog();
-        eventLog.setGaAppId(GA_APP_ID);
-        eventLog.setCreationTs(LocalDateTime.now());
-
-        return eventLog;
-    }
-
-    private GAEventLog _saveGAEventStatus(GAEventLog eventLog, GAEventStatus eventStatus) {
-        eventLog.setEventStatus(eventStatus);
-        return self.saveGAEventLog(eventLog);
+    private GAEvent _saveGAEventStatus(GAEvent gaEvent, GAEventStatus eventStatus) {
+        gaEvent.setEventStatus(eventStatus);
+        return self.saveGAEvent(gaEvent);
     }
 }
