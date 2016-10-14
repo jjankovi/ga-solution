@@ -6,10 +6,9 @@ import {LoggerService} from "./common/logger.service";
 import {GAModuleService} from "./common/gamodule/gamodule.service";
 
 @Component({
-  moduleId: module.id,
   selector: 'ib-app',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+  styleUrls: ['app.component.scss'],
   providers: [LoginService, LoggerService, GAModuleService]
 })
 export class AppComponent {

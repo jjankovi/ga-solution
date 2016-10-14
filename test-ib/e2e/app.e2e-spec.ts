@@ -1,10 +1,10 @@
-import { TestIbPage } from './app.po';
+import { MigrationProjectPage } from './app.po';
 
-describe('test-ib App', function() {
-  let page: TestIbPage;
+describe('migration-project App', function() {
+  let page: MigrationProjectPage;
 
   beforeEach(() => {
-    page = new TestIbPage();
+    page = new MigrationProjectPage();
   });
 
   it('should display message saying app works', () => {

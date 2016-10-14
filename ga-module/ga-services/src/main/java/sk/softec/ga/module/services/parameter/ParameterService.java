@@ -1,6 +1,6 @@
 package sk.softec.ga.module.services.parameter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by jankovj on 22. 8. 2016.
@@ -9,7 +9,7 @@ public interface ParameterService {
 
     void setValue(String paramName, Object paramValue);
 
-    LocalDateTime getParamAsDateTime(String paramName);
+    Date getParamAsDate(String paramName);
 
     Integer getParamAsInt(String paramName);
 

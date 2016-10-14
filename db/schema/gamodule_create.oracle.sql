@@ -17,4 +17,3 @@
     );
 
     create sequence GA_EVENT_SEQ;
-

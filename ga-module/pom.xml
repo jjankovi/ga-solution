@@ -9,11 +9,10 @@
     </parent>
     <artifactId>ga-module</artifactId>
     <modules>
-        <module>ga-common</module>
         <module>ga-services</module>
         <module>ga-web</module>
-        <module>ga-crm-connector</module>
-        <module>ga-clientdb-connector</module>
+        <module>ga-common</module>
+        <module>ga-testbank</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
@@ -26,5 +25,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>taba</id>
+            <modules>
+                <module>ga-taba</module>
+            </modules>
+        </profile>
+    </profiles>
+
 
 </project>

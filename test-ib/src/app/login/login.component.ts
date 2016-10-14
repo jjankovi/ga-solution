@@ -4,7 +4,6 @@ import {Login} from "./login.model";
 import {LoginService} from "./login.service";
 
 @Component({
-  moduleId: module.id,
   templateUrl: 'login.component.html',
   providers: [LoginService]
 })

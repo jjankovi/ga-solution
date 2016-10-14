@@ -11,6 +11,8 @@
     <modules>
         <module>test-crm</module>
         <module>test-clientdb</module>
+        <module>test-gate</module>
+        <module>test-ib</module>
         <module>ga-module</module>
     </modules>
     <properties>

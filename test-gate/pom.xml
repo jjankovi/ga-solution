@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ga-solution</artifactId>
+        <groupId>sk.softec.ga</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>test-gate</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
+
+    <build>
+        <finalName>gate</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <!--<contextXml>src/test/etc/jetty-context.xml</contextXml>-->
+                  <webAppSourceDirectory>${project.basedir}/dist</webAppSourceDirectory>
+                  <webApp>
+                    <descriptor>${project.basedir}/WEB-INF/web.xml</descriptor>
+                  </webApp>
+                  <httpConnector>
+                      <port>8081</port>
+                  </httpConnector>
+                  <useProvidedScope>true</useProvidedScope>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-jndi</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                  <webXml>${project.basedir}/WEB-INF/web.xml</webXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

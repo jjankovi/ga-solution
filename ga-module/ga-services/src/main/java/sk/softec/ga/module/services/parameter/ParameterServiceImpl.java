@@ -5,14 +5,15 @@ import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import sk.softec.ga.module.services.model.AppParam;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by jankovj on 22. 8. 2016.
@@ -22,9 +23,7 @@ import java.time.format.DateTimeFormatter;
 public class ParameterServiceImpl implements ParameterService {
 
     private static final Logger log = LoggerFactory.getLogger(ParameterServiceImpl.class);
-    private static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
-
-    private DateTimeFormatter df = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
+    private static final DateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -43,22 +42,27 @@ public class ParameterServiceImpl implements ParameterService {
                     appParam.setValue(paramValue.toString());
                     break;
                 case DATE_TIME:
-                    LocalDateTime localDateTime = (LocalDateTime)paramValue;
-                    appParam.setValue(localDateTime.format(df));
+                    Date localDateTime = (Date)paramValue;
+                    appParam.setValue(DATE_FORMATTER.format(localDateTime));
                     break;
             }
         }
     }
 
     @Override
-    public LocalDateTime getParamAsDateTime(String paramName) {
+    public Date getParamAsDate(String paramName) {
         AppParam appParam = _getAppParam(paramName);
         String appParamValue = appParam.getValue();
         if (StringUtils.isEmpty(appParamValue)) {
             return null;
         }
 
-        return LocalDateTime.parse(appParamValue, df);
+        try {
+            return DATE_FORMATTER.parse(appParamValue);
+        } catch (ParseException e) {
+            // do nothing
+        }
+        return null;
     }
 
     @Override
